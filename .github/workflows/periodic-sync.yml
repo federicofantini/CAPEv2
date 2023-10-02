@@ -15,9 +15,6 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ignore .github conflicts
-        run: echo ".github" > .git/info/exclude
-
       - uses: fopina/upstream-to-pr@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
