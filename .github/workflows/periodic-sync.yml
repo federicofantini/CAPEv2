@@ -8,46 +8,17 @@ on:
   workflow_dispatch:  # click the button on Github repo!
 
 jobs:
-  sync_latest_from_upstream:
+  build:
+
     runs-on: ubuntu-latest
-    name: Sync latest commits from upstream repo
 
     steps:
-    # REQUIRED step
-    # Step 1: run a standard checkout action, provided by github
-    - name: Checkout target repo
-      uses: actions/checkout@v3
-      with:
-        # optional: set the branch to checkout,
-        # sync action checks out your 'target_sync_branch' anyway
-        ref:  develop
-        # REQUIRED if your upstream repo is private (see wiki)
-        persist-credentials: false
-
-    # REQUIRED step
-    # Step 2: run the sync action
-    - name: Sync upstream changes
-      id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
-      with:
-        target_sync_branch: develop
-        # REQUIRED 'target_repo_token' exactly like this!
-        target_repo_token: ${{ secrets.GITHUB_TOKEN }}
-        upstream_sync_branch: master
-        upstream_sync_repo: kevoreilly/CAPEv2
-#        upstream_repo_access_token:
-
-        # Set test_mode true to run tests instead of the true action!!
-        test_mode: true
-
-    # Step 3: Display a sample message based on the sync output var 'has_new_commits'
-    - name: New commits found
-      if: steps.sync.outputs.has_new_commits == 'true'
-      run: echo "New commits were found to sync."
-
-    - name: No new commits
-      if: steps.sync.outputs.has_new_commits == 'false'
-      run: echo "There were no new commits."
-
-    - name: Show value of 'has_new_commits'
-      run: echo ${{ steps.sync.outputs.has_new_commits }}
+      - uses: actions/checkout@v1
+      - name: Fetch upstream
+        uses: 135e2/sync-upstream-repo@v0.1.5
+        with:
+          #Git upstream repo
+          upstream_repo: https://github.com/kevoreilly/CAPEv2.git
+          upstream_branch: master
+          local_branch: upstream
+  github_token: ${{ secrets.GITHUB_TOKEN }}
