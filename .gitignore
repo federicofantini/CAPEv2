@@ -22,5 +22,5 @@ tests/test_bson.bson.compressed
 
 installer/cape-config.sh
 
-workflows/cape_sh.yml
-workflows/antitemplaters.yml_disabled
+.github/workflows/cape_sh.yml
+.github/workflows/antitemplaters.yml_disabled
