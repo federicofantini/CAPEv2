@@ -2,7 +2,7 @@ name: PIP audit
 
 on:
   schedule:
-  - cron: '0 8 * * 1'
+  - cron: '0 8 * * 1' # https://crontab.guru/#0_8_*_*_1
 
 jobs:
   test:

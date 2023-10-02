@@ -1,11 +1,8 @@
 name: Update requirements.txt file
 
-#on:
-#  push:
-#    branches: [ master, develop ]
 on:
   push:
-    branches: [ develop-ci ]
+    branches: [ master, develop ]
     paths:
       - "pyproject.toml"
       - "poetry.lock"
