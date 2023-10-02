@@ -1,40 +1,29 @@
 version: 2
 
 updates:
-  - package-ecosystem: "pip"
-    directory: "/test/python_test"
+  - package-ecosystem: "pip" # poetry
+    directory: "/"
     schedule:
       interval: "weekly"
-      day: "tuesday"
+      day: "monday"
     target-branch: "develop"
     reviewers:
-      - x
-
-  - package-ecosystem: "npm"
-    directory: "/test/node_test"
-    schedule:
-      interval: "weekly"
-      day: "tuesday"
-    target-branch: "develop"
-    reviewers:
-      - x
-
+      - federicofantini
 
   - package-ecosystem: "docker"
-    directory: "/test/python_test"
+    directory: "/docker"
     schedule:
       interval: "weekly"
-      day: "tuesday"
+      day: "monday"
     target-branch: "develop"
     reviewers:
-      - x
-
+      - federicofantini
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "tuesday"
+      day: "monday"
     target-branch: "develop"
     reviewers:
-      - x
+      - federicofantini

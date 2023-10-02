@@ -1,0 +1,40 @@
+name: Periodic upstream sync
+
+#on:
+#  schedule:
+#    - cron: '0 9 1 1-12/2 *' # https://crontab.guru/#0_9_1_1-12/2_*
+on:
+  push:
+    branches: [ develop-ci ]
+
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Add new remote
+        run: git remote add public https://github.com/kevoreilly/CAPEv2.git
+
+      - name: Git fetch public remote
+        run: git fetch public
+
+      - name: Merge upstream
+        run: git merge public/master
+
+      - name: Run the Action
+        uses: devops-infra/action-pull-request@v0.5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: sync-with-upstream
+          target_branch: develop
+          title: Sync with upstream
+          body: "**Automated pull request**"
+          reviewer: federicofantini
+          label: sync-upstream
+          draft: false
+          get_diff: true
+          ignore_users: "dependabot"
+          allow_no_diff: false
