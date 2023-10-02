@@ -14,11 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: develop                             # set the branch to merge to
+          ref: upstream                            # set the branch to merge to
           fetch-depth: 0
       - name: Sync Upstream
         uses: zhangnew/sync-upstream@v1
         with:
           upstream: kevoreilly/CAPEv2              # set the upstream repo
           upstream-branch: master                  # set the upstream branch to merge from
-          branch: develop                          # set the branch to merge to
+          branch: upstream                         # set the branch to merge to
