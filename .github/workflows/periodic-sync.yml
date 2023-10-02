@@ -16,7 +16,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ignore .github conflicts
-        run: git update-index --assume-unchanged .github
+        run: echo ".github" > .git/info/exclude
 
       - uses: fopina/upstream-to-pr@v1
         with:
