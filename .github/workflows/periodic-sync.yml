@@ -15,6 +15,9 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: ignore .github conflicts
+        run: git update-index --assume-unchanged .github
+
       - uses: fopina/upstream-to-pr@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
