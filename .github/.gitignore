@@ -7,3 +7,6 @@ ENV/
 env.bak/
 venv.bak/
 .idea/
+
+workflows/cape_sh.yml
+workflows/antitemplaters.yml_disabled
