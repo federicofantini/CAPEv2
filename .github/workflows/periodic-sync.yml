@@ -17,7 +17,7 @@ jobs:
     - name: Create PR to branch
       uses: gorillio/github-action-sync@master
       with:
-        upstream: https://github.com/kevoreilly/CAPEv2.git
+        upstream: git@github.com:kevoreilly/CAPEv2.git
         upstream_branch: master
         branch: develop
         pr_labels: upstream
