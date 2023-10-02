@@ -1,10 +1,10 @@
 name: upstream to PR
 
 on:
-  schedule:
-    - cron: '0 9 1 1-12/2 *' # https://crontab.guru/#0_9_1_1-12/2_*
-  workflow_dispatch:
-    inputs: {}
+#  schedule:
+#    - cron: '0 9 1 1-12/2 *' # https://crontab.guru/#0_9_1_1-12/2_*
+  push:
+    branches: [ master ]
 
 jobs:
   autoupdate:
