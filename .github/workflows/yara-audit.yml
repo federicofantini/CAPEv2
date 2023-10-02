@@ -4,6 +4,8 @@ on:
   schedule:
   - cron: '0 8 * * 1' # https://crontab.guru/#0_8_*_*_1
 
+  workflow_dispatch:  # click the button on Github repo!
+
 jobs:
   test:
     runs-on: ubuntu-latest
