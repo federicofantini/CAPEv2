@@ -17,6 +17,6 @@ jobs:
 
       - uses: fopina/upstream-to-pr@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           upstream-repository: https://github.com/kevoreilly/CAPEv2.git
           upstream-branch: master
