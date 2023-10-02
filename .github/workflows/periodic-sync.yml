@@ -20,5 +20,5 @@ jobs:
           #Git upstream repo
           upstream_repo: https://github.com/kevoreilly/CAPEv2.git
           upstream_branch: master
-          local_branch: upstream
+          local_branch: develop
           github_token: ${{ secrets.GITHUB_TOKEN }}
