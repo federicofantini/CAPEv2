@@ -1,24 +1,22 @@
-name: 'Upstream Sync'
+name: upstream to PR
 
 on:
   schedule:
-    - cron: '0 9 1 1-12/2 *'
-    # https://crontab.guru/#0_9_1_1-12/2_*
-
-  workflow_dispatch:  # click the button on Github repo!
+    - cron: '0 9 1 1-12/2 *' # https://crontab.guru/#0_9_1_1-12/2_*
+  workflow_dispatch:
+    inputs: {}
 
 jobs:
-  build:
-
+  autoupdate:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v1
-      - name: Fetch upstream
-        uses: 135e2/sync-upstream-repo@v0.1.5
+      - uses: actions/checkout@v3
         with:
-          #Git upstream repo
-          upstream_repo: https://github.com/kevoreilly/CAPEv2.git
-          upstream_branch: master
-          local_branch: develop
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: fopina/upstream-to-pr@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          upstream-repository: https://github.com/kevoreilly/CAPEv2.git
+          upstream-branch: master
