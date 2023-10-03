@@ -27,3 +27,4 @@ jobs:
              gh pr create -B develop -H upstream-master --title 'Merge upstream-master into develop' --body 'Created by Github action'
         env:
           GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
