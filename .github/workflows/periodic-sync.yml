@@ -10,9 +10,8 @@ jobs:
   upstream_pull_request:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
       pull-requests: write
-      repository-projects: write
+      contents: write
 
     name: upstream_pull_request
     steps:
@@ -24,8 +23,6 @@ jobs:
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git fetch upstream
              git checkout -b upstream-master upstream/master
-             echo ".github/**" >> .gitignore
-             echo ".github" >> .gitignore
              gh pr create -B develop -H upstream-master --title 'Merge upstream-master into develop' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
