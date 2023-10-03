@@ -9,13 +9,17 @@ on:
 jobs:
   upstream_pull_request:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+
     name: upstream_pull_request
     steps:
       - name: checkout
         uses: actions/checkout@v4
 
       - name: create pull request
-        permissions: write-all
         run: |
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git fetch upstream
