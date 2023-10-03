@@ -26,5 +26,5 @@ jobs:
              git checkout -b upstream-master upstream/master
              gh pr create -B develop -H upstream-master --title 'Merge upstream-master into develop' --body 'Created by Github action'
         env:
-          GH_TOKEN: ${{ github.token }}
-          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
