@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     name: upstream_pull_request
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
       - name: create pull request
         run: |
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
