@@ -23,6 +23,7 @@ jobs:
         run: |
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git fetch upstream
-             gh pr create -B develop -H upstream/master --title 'Merge upstream-master into develop' --body 'Created by Github action'
+             git checkout -b upstream-master upstream/master
+             gh pr create -B develop -H upstream-master --title 'Merge upstream-master into develop' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
