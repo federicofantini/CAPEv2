@@ -20,4 +20,5 @@ jobs:
              git fetch upstream
              git checkout -b develop origin/develop
              git branch -a
+             git config pull.rebase false
              git pull upstream master
