@@ -21,8 +21,7 @@ jobs:
              git fetch upstream
              git checkout -b "upstream-master" upstream/master
              git branch --all
-             echo ".github/**" >> .gitignore
-             echo ".github" >> .gitignore
+             echo ".github" > .git/info/exclude_workflows
              git push -u origin "upstream-master"
 
 #             git config pull.rebase false
