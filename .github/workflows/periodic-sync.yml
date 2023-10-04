@@ -1,19 +1,17 @@
 name: Upstream pull request
 
 on:
-#  schedule:
-#    - cron: '0 9 1 1-12/2 *' # https://crontab.guru/#0_9_1_1-12/2_*
-  workflow_dispatch:
-    inputs: {}
+  schedule:
+    - cron: '0 9 1 1-12/2 *' # https://crontab.guru/#0_9_1_1-12/2_*
 
 jobs:
-  createPullRequest:
+  createPullRequestFromUpstream:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: fregante/setup-git-user@v2
 
-      - name: Create pr from upstream
+      - name: Create upstream master branch
         run: |
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git remote -v
@@ -25,12 +23,6 @@ jobs:
              git add .github
              git commit -m "Removed upstream CI"
              git push -u origin upstream-master
-
-#             git config pull.rebase false
-#             git config --list
-#             git pull upstream master
-#             git push -u origin "upstream-$(date '+%Y-%m-%d')"
-#             git remote remove upstream
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -39,5 +31,5 @@ jobs:
         with:
           origin-branch: "upstream-master"
           target-branch: 'develop'
-          custom-title: 'Merge upstream'
-          custom-body: 'Please, check thease changes :)'
+          custom-title: '[AUTO] It is the time to merge'
+          custom-body: 'Please, check thease changes and merge it :)'
