@@ -31,12 +31,12 @@ jobs:
             && sudo chmod -R 777 /var/log/capybox/django /var/log/capybox/web /var/log/capybox/rooter /var/log/capybox/processor
 
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Checkout test files repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: CAPESandbox/CAPE-TestFiles
           path: tests/data/
