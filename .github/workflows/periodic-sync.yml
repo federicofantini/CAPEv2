@@ -17,7 +17,7 @@ jobs:
         run: |
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git fetch upstream
-             git branch --set-upstream-to upstream-master upstream/master
+             git branch upstream-master upstream/master
 
       - name: Create Pull Request
         id: cpr
