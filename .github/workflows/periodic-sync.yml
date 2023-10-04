@@ -22,6 +22,10 @@ jobs:
              git checkout -b "upstream-master" upstream/master
              git branch --all
              echo ".github" > .git/info/exclude_workflows
+             echo "[core]" >> .git/config
+             echo "     excludesfile = +info/exclude" >> .git/config
+             cat .git/info/exclude_workflows
+             cat .git/config
              git push -u origin "upstream-master"
 
 #             git config pull.rebase false
