@@ -32,7 +32,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
           base: develop
-          branch: upstream-master
+          branch: upstream/master
           delete-branch: true
           title: 'Merge with upstream'
           body: |
