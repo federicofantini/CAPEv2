@@ -15,6 +15,7 @@ jobs:
 
       - name: Create upstream branch
         run: |
+             git fetch origin
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git fetch upstream
              git checkout -b upstream-master upstream/master
