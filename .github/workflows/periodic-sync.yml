@@ -22,9 +22,9 @@ jobs:
              git checkout -b "upstream-master" upstream/master
              git branch --all
              rm -rf .github
-             git rm -r .github
-             git config core.excludesFile '.github'
-             git push -u origin "upstream-master"
+             git add .github
+             git commit -m "Removed upstream CI"
+             git push -u origin upstream-master
 
 #             git config pull.rebase false
 #             git config --list
