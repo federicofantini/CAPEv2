@@ -21,6 +21,7 @@ jobs:
              git fetch upstream
              git checkout -b "upstream-master" upstream/master
              git branch --all
+             git rm -r .github
              git config core.excludesFile '.github'
              git push -u origin "upstream-master"
 
