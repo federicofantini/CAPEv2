@@ -15,13 +15,16 @@ jobs:
 
       - name: Create pr from upstream
         run: |
-             git fetch origin
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
+             git remote -v
+             git fetch origin
              git fetch upstream
              git checkout -b develop-local origin/develop
-             git branch -a
+             git branch --all
              git config pull.rebase false
+             git config --list
              git pull upstream master
-             git push origin upstream-master-merge
+             git push -u origin "upstream-$(date '+%Y-%m-%d')"
+             git remote remove upstream
         env:
           GH_TOKEN: ${{ github.token }}
