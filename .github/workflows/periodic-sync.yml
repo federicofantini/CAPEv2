@@ -17,8 +17,9 @@ jobs:
         run: |
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git fetch upstream
-             git checkout -b upstream-master upstream/master
-             git checkout -b develop origin/develop
+             git branch -a
+             git checkout --track upstream/master
+             git checkout --track origin/develop
              git branch -a
 
       - name: Create Pull Request
