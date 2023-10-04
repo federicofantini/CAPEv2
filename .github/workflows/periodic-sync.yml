@@ -20,4 +20,4 @@ jobs:
              git fetch upstream
              git checkout -b develop origin/develop
              git branch -a
-             git pull upstream/master
+             git pull upstream master
