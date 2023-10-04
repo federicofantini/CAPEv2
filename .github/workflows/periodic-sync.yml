@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create upstream branch
+      - name: Create pr from upstream
         run: |
              git fetch origin
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
@@ -22,4 +22,5 @@ jobs:
              git checkout -b develop origin/develop
              git branch -a
              gh pr create -B develop -H upstream-master --title 'Merge upstream/master into develop' --body 'Created by Github action'
-
+        env:
+          GH_TOKEN: ${{ github.token }}
