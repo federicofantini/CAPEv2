@@ -19,12 +19,22 @@ jobs:
              git remote -v
              git fetch origin
              git fetch upstream
-             git checkout -b develop-local origin/develop
+             git checkout -b "upstream-master" upstream/master
              git branch --all
-             git config pull.rebase false
-             git config --list
-             git pull upstream master
-             git push -u origin "upstream-$(date '+%Y-%m-%d')"
-             git remote remove upstream
+             git push -u origin "upstream-master"
+
+#             git config pull.rebase false
+#             git config --list
+#             git pull upstream master
+#             git push -u origin "upstream-$(date '+%Y-%m-%d')"
+#             git remote remove upstream
         env:
           GH_TOKEN: ${{ github.token }}
+
+      - name: Create PR
+        uses: desbravacloud/action-create-pull-requests@v1
+        with:
+          origin-branch: "upstream-master"
+          target-branch: 'develop'
+          custom-title: 'Merge upstream'
+          custom-body: 'Please, check thease changes :)'
