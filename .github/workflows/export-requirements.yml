@@ -7,15 +7,13 @@ on:
       - "pyproject.toml"
       - "poetry.lock"
 
-  workflow_dispatch:  # click the button on Github repo!
-
 jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     strategy:
       matrix:
-        python-version: ["3.8"]
+        python-version: ["3.10"]
 
     steps:
       - name: Check out repository code

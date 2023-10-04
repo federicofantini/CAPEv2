@@ -2,9 +2,10 @@ name: YARA tests
 
 on:
   schedule:
-  - cron: '0 8 * * 1' # https://crontab.guru/#0_8_*_*_1
-
-  workflow_dispatch:  # click the button on Github repo!
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+    branches:
+      - develop
 
 jobs:
   test:
@@ -12,7 +13,7 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        python-version: ["3.8"]
+        python-version: ["3.10"]
 
     steps:
       - name: Set ENV var
@@ -32,11 +33,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
-        run: |
-          sudo apt update && sudo apt install libxml2-dev libxslt-dev python3-dev libgeoip-dev ssdeep libfuzzy-dev \
-            libldap2-dev libsasl2-dev ldap-utils tox lcov valgrind libvirt-daemon-system libvirt-clients bridge-utils \
-            libvirt-dev && pip install python-ldap
+      - name: Install and cache dependencies
+        uses: Eeems-Org/apt-cache-action@v1.1
+        with:
+          packages: |
+                    libxml2-dev libxslt-dev python3-dev libgeoip-dev ssdeep libfuzzy-dev p7zip-full innoextract unrar \
+                    upx libsasl2-dev libssl-dev libldap2-dev ldap-utils tox lcov valgrind libvirt-daemon-system \
+                    libvirt-clients bridge-utils libvirt-dev
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
