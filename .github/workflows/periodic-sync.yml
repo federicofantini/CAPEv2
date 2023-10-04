@@ -22,6 +22,6 @@ jobs:
              git branch -a
              git config pull.rebase false
              git pull upstream master
-             gh pr create -B develop -H develop-local --title 'Merge upstream/master into develop' --body 'Created by Github action'
+             git push origin upstream-master-merge
         env:
           GH_TOKEN: ${{ github.token }}
