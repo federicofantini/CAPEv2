@@ -18,7 +18,8 @@ jobs:
              git fetch origin
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git fetch upstream
-             git checkout -b develop origin/develop
+             git checkout -b develop-local origin/develop
              git branch -a
              git config pull.rebase false
              git pull upstream master
+             gh pr create -B develop -H develop-local --title 'Merge upstream/master into develop' --body 'Created by Github action'
