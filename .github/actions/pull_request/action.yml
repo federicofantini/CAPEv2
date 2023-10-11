@@ -71,7 +71,7 @@ runs:
           --url "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number/requested_reviewers" \
           --header 'authorization: Bearer ${{ github.token }}' \
           --header 'content-type: application/json' \
-          --data '{"reviewers": $reviewers}'
+          --data '{"reviewers": "'$reviewers'"}'
         
           echo 'Pull request has been created!!!'
         else
