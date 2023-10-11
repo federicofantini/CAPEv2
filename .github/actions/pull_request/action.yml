@@ -61,9 +61,10 @@ runs:
             "base": "${{ inputs.target-branch }}",
             "maintainer_can_modify": ${{ inputs.maintainer_can_modify }}
           }')
-          echo "$output"
+
           pr_number="$(jq '.number' <<< "$output")"
-          echo "$pr_number"
+          echo $(jq -ncR '[inputs]' <<< "${{ inputs.reviewers }}")
+        
           curl --request POST \
           --url "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number/requested_reviewers" \
           --header 'authorization: Bearer ${{ github.token }}' \
@@ -71,7 +72,6 @@ runs:
           --data '{
             "reviewers": $(jq -ncR '[inputs]' <<< "${{ inputs.reviewers }}")
             }' \
-          --fail
         
           echo 'Pull request has been created!!!'
         else
