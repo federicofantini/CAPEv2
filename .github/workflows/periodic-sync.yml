@@ -43,7 +43,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4  # otherwise he can't see the action
 
       - name: Create PR from upstream
         uses: ./.github/actions/pull_request
