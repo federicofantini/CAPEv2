@@ -28,12 +28,12 @@ jobs:
              git add .github
              git commit -m "Removed upstream CI"
              git push -u origin upstream-master
-             ls -al ./.github/actions/pull_request
+             ls -al .github/actions/pull_request
         env:
           GH_TOKEN: ${{ github.token }}
 
       - name: Create PR
-        uses: .github/actions/pull_request
+        uses: ./.github/actions/pull_request
         with:
           origin-branch: "upstream-master"
           target-branch: 'develop'
