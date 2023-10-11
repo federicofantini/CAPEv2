@@ -14,6 +14,10 @@ jobs:
 
       - name: Create upstream master branch
         run: |
+             if [ `git branch --list "upstream-master"` ]; then
+               echo "Branch $branch_name already exists. maybe there is already a PR?"
+               exit 1
+             fi
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
              git remote -v
              git fetch origin
@@ -29,7 +33,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Create PR
-        uses: ./.github/actions/pull_request
+        uses: .github/actions/pull_request
         with:
           origin-branch: "upstream-master"
           target-branch: 'develop'
