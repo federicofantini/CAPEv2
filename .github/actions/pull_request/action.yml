@@ -59,7 +59,7 @@ runs:
             "body": "${{ inputs.custom-body }}",
             "head": "${{ env.branch_name }}",
             "base": "${{ inputs.target-branch }}",
-            "maintainer_can_modify": "${{ inputs.maintainer_can_modify }}"
+            "maintainer_can_modify": ${{ inputs.maintainer_can_modify }}
           }')
           echo "$output"
           pr_number="$(jq '.number' <<< "$output")"
