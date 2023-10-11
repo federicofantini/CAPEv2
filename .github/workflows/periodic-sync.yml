@@ -40,10 +40,10 @@ jobs:
              git commit -m "Removed upstream CI"
              echo "command: git push -u origin upstream-master"
              git push -u origin upstream-master
-             echo "command: ls -al .github/actions/pull_request"
-             ls -al .github/actions/pull_request
         env:
           GH_TOKEN: ${{ github.token }}
+
+      - uses: actions/checkout@v4
 
       - name: Create PR from upstream
         uses: federicofantini/github-action_create-pull-requests@1.0.0
