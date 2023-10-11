@@ -4,8 +4,6 @@ on:
   schedule:
     - cron: '0 9 1 1-12/2 *' # https://crontab.guru/#0_9_1_1-12/2_*
   workflow_dispatch:
-    branches:
-      - develop
 
 jobs:
   createPullRequestFromUpstream:
@@ -30,9 +28,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Create PR
-        uses: desbravacloud/action-create-pull-requests@v1
+        uses: ./.github/actions/pull_request
         with:
           origin-branch: "upstream-master"
           target-branch: 'develop'
           custom-title: '[AUTO] It is the time to merge'
           custom-body: 'Please, check thease changes and merge it :)'
+          reviewers: "federicofantini, 0ssigeno"
+          maintainer_can_modify: true
