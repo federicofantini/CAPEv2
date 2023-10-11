@@ -18,16 +18,27 @@ jobs:
                echo "Branch $branch_name already exists. maybe there is already a PR?"
                exit 1
              fi
+             echo "command: git remote add upstream https://github.com/kevoreilly/CAPEv2.git"
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
+             echo "command: git remote -v"
              git remote -v
+             echo "command: git fetch origin"
              git fetch origin
+             echo "command: git fetch upstream"
              git fetch upstream
+             echo 'git checkout -b "upstream-master" upstream/master'
              git checkout -b "upstream-master" upstream/master
+             echo "command: git branch --all"
              git branch --all
+             echo "command: rm -rf .github"
              rm -rf .github
+             echo "command: git add .github"
              git add .github
+             echo 'git commit -m "Removed upstream CI"'
              git commit -m "Removed upstream CI"
+             echo "command: git push -u origin upstream-master"
              git push -u origin upstream-master
+             echo "command: ls -al .github/actions/pull_request"
              ls -al .github/actions/pull_request
         env:
           GH_TOKEN: ${{ github.token }}
