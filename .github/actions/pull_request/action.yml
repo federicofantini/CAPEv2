@@ -33,7 +33,7 @@ runs:
   using: "composite"
   steps:
     - run: |
-        apt-get install -y jq
+        sudo apt-get install -y jq
       shell: bash
     - run: |
         if [ -z "${{ inputs.origin-branch }}" ]; then
