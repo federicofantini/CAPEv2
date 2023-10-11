@@ -52,5 +52,5 @@ jobs:
           target-branch: 'develop'
           custom-title: '[AUTO] It is the time to merge'
           custom-body: 'Please, check thease changes and merge it :)'
-          reviewers: "federicofantini, 0ssigeno"
+          reviewers: "federicofantini 0ssigeno"
           maintainer_can_modify: true
