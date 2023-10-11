@@ -23,7 +23,7 @@ jobs:
              echo "command: git fetch upstream"
              git fetch upstream
              
-             if [ `git ls-remote --heads origin refs/heads/upstream-master` ]; then
+             if [[ $(git ls-remote --heads origin refs/heads/upstream-master) == *upstream-master* ]]; then
                echo "Remote branch 'upstream-master' already exists. Maybe there is already a PR?"
                exit 1
              fi
