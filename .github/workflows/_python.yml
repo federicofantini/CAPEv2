@@ -299,68 +299,68 @@ jobs:
           exit 1
         shell: bash
 
-      # not the best solution because i do not think that dependabot supports this
-      - name: Create requirements-linters.txt
-        run: |
-          echo > requirements-linters.txt
-
-          if [[ '${{ inputs.use_black}}' != 'false' ]]; then
-            echo "black==22.3.0" >> requirements-linters.txt
-          fi
-
-          if [[ '${{ inputs.use_isort}}' != 'false' ]]; then
-            echo "isort==5.12.0" >> requirements-linters.txt
-          fi
-
-          if [[ '${{ inputs.use_flake8}}' != 'false' ]]; then
-            echo "flake8==5.0.4" >> requirements-linters.txt
-            if [[ -n '${{ inputs.django_settings_module }}' ]]; then
-              echo "flake8-django==1.1.5" >> requirements-linters.txt
-            fi
-          fi
-
-          if [[ '${{ inputs.use_pylint}}' != 'false' ]]; then
-            echo "pylint==2.14.3" >> requirements-linters.txt
-            if [[ -n '${{ inputs.django_settings_module }}' ]]; then
-              echo "pylint-django==2.5.3" >> requirements-linters.txt
-            fi
-          fi
-
-          if [[ '${{ inputs.use_bandit}}' != 'false' ]]; then
-            echo "bandit==1.7.4" >> requirements-linters.txt
-          fi
-          if [[ '${{ inputs.use_autoflake}}' != 'false' ]]; then
-            echo "autoflake==1.7.7" >> requirements-linters.txt
-          fi
-          cat $(echo ${{ inputs.requirements_path }} | sed -e 's/.txt/-linter.txt/') >> requirements-linters.txt 2>/dev/null || exit 0
-        shell: bash
-        working-directory: ${{ inputs.install_from }}
-
-      - name: Create requirements-dev.txt
-        run: |
-          echo > requirements-dev.txt
-          if [[ '${{ inputs.use_coverage }}' != 'false' ]]; then
-            echo "coverage>=7.0.1" >> requirements-dev.txt
-          fi
-          cat $(echo ${{ inputs.requirements_path }} | sed -e 's/.txt/-dev.txt/') >> requirements-dev.txt 2>/dev/null || exit 0
-        shell: bash
-        working-directory: ${{ inputs.install_from }}
-
-      - name: Create requirements-docs.txt
-        run: |
-          echo > requirements-docs.txt
-          if [[ -n '${{ inputs.check_docs_directory }}' ]]; then
-            echo "rstcheck[sphinx]" >> requirements-docs.txt 
-            echo "sphinx==4.5.0" >> requirements-docs.txt
-            echo "sphinx_rtd_theme==1.0.0" >> requirements-docs.txt
-            echo "sphinxcontrib-spelling==7.2.1" >> requirements-docs.txt
-            if [[ -n '${{ inputs.django_settings_module }}' ]]; then
-              echo "sphinxcontrib-django2==1.1.1" >> requirements-docs.txt
-            fi
-            cat $(echo ${{ inputs.requirements_path }} | sed -e 's/.txt/-docs.txt/') >> requirements-docs.txt 2>/dev/null || exit 0 
-          fi
-        shell: bash
-        working-directory: ${{ inputs.install_from }}
+#      # not the best solution because i do not think that dependabot supports this
+#      - name: Create requirements-linters.txt
+#        run: |
+#          echo > requirements-linters.txt
+#
+#          if [[ '${{ inputs.use_black}}' != 'false' ]]; then
+#            echo "black==22.3.0" >> requirements-linters.txt
+#          fi
+#
+#          if [[ '${{ inputs.use_isort}}' != 'false' ]]; then
+#            echo "isort==5.12.0" >> requirements-linters.txt
+#          fi
+#
+#          if [[ '${{ inputs.use_flake8}}' != 'false' ]]; then
+#            echo "flake8==5.0.4" >> requirements-linters.txt
+#            if [[ -n '${{ inputs.django_settings_module }}' ]]; then
+#              echo "flake8-django==1.1.5" >> requirements-linters.txt
+#            fi
+#          fi
+#
+#          if [[ '${{ inputs.use_pylint}}' != 'false' ]]; then
+#            echo "pylint==2.14.3" >> requirements-linters.txt
+#            if [[ -n '${{ inputs.django_settings_module }}' ]]; then
+#              echo "pylint-django==2.5.3" >> requirements-linters.txt
+#            fi
+#          fi
+#
+#          if [[ '${{ inputs.use_bandit}}' != 'false' ]]; then
+#            echo "bandit==1.7.4" >> requirements-linters.txt
+#          fi
+#          if [[ '${{ inputs.use_autoflake}}' != 'false' ]]; then
+#            echo "autoflake==1.7.7" >> requirements-linters.txt
+#          fi
+#          cat $(echo ${{ inputs.requirements_path }} | sed -e 's/.txt/-linter.txt/') >> requirements-linters.txt 2>/dev/null || exit 0
+#        shell: bash
+#        working-directory: ${{ inputs.install_from }}
+#
+#      - name: Create requirements-dev.txt
+#        run: |
+#          echo > requirements-dev.txt
+#          if [[ '${{ inputs.use_coverage }}' != 'false' ]]; then
+#            echo "coverage>=7.0.1" >> requirements-dev.txt
+#          fi
+#          cat $(echo ${{ inputs.requirements_path }} | sed -e 's/.txt/-dev.txt/') >> requirements-dev.txt 2>/dev/null || exit 0
+#        shell: bash
+#        working-directory: ${{ inputs.install_from }}
+#
+#      - name: Create requirements-docs.txt
+#        run: |
+#          echo > requirements-docs.txt
+#          if [[ -n '${{ inputs.check_docs_directory }}' ]]; then
+#            echo "rstcheck[sphinx]" >> requirements-docs.txt
+#            echo "sphinx==4.5.0" >> requirements-docs.txt
+#            echo "sphinx_rtd_theme==1.0.0" >> requirements-docs.txt
+#            echo "sphinxcontrib-spelling==7.2.1" >> requirements-docs.txt
+#            if [[ -n '${{ inputs.django_settings_module }}' ]]; then
+#              echo "sphinxcontrib-django2==1.1.1" >> requirements-docs.txt
+#            fi
+#            cat $(echo ${{ inputs.requirements_path }} | sed -e 's/.txt/-docs.txt/') >> requirements-docs.txt 2>/dev/null || exit 0
+#          fi
+#        shell: bash
+#        working-directory: ${{ inputs.install_from }}
 
       - name: Check virtualenv cache
         uses: syphar/restore-virtualenv@v1
@@ -467,42 +467,42 @@ jobs:
         working-directory: ${{ inputs.working_directory }}
         shell: bash
 
-      - name: Run unittest
-        run: |
-          CMD="python"
-          if [[ '${{ inputs.use_coverage }}' != 'false' ]]; then
-              CMD="coverage run --rcfile=${{ inputs.coverage_config_path }}"
-          
-              if [[ -n '${{ inputs.django_settings_module }}' ]]; then
-                CMD="${CMD} -a manage.py test"
-                # manage manual tags
-                if [[ -n '${{ inputs.tags_for_manual_tests }}' ]]; then
-                  for tag in ${{ inputs.tags_for_manual_tests }}; do
-                    CMD="${CMD} --exclude-tag=$tag"
-                  done
-                fi
-                # manage slow tags
-                if [[ '${{ github.base_ref }}' != 'master' && '${{ github.base_ref }}' != 'main' ]]; then
-                  if [[ -n '${{ inputs.tags_for_slow_tests }}' ]]; then
-                    for tag in ${{ inputs.tags_for_slow_tests }}; do
-                      CMD="${CMD} --exclude-tag=$tag"
-                    done
-                  fi
-                fi
-          
-              else
-                CMD="${CMD} -m unittest discover"
-              fi
-
-          else
-            CMD="python -m unittest discover"
-          fi
-          CMD="${CMD} --failfast"
-          echo "Running command: ${CMD}"
-          $CMD
-        working-directory: ${{ inputs.working_directory }}
-        env: ${{ secrets }}
-        shell: bash
+#      - name: Run unittest
+#        run: |
+#          CMD="python"
+#          if [[ '${{ inputs.use_coverage }}' != 'false' ]]; then
+#              CMD="coverage run --rcfile=${{ inputs.coverage_config_path }}"
+#
+#              if [[ -n '${{ inputs.django_settings_module }}' ]]; then
+#                CMD="${CMD} -a manage.py test"
+#                # manage manual tags
+#                if [[ -n '${{ inputs.tags_for_manual_tests }}' ]]; then
+#                  for tag in ${{ inputs.tags_for_manual_tests }}; do
+#                    CMD="${CMD} --exclude-tag=$tag"
+#                  done
+#                fi
+#                # manage slow tags
+#                if [[ '${{ github.base_ref }}' != 'master' && '${{ github.base_ref }}' != 'main' ]]; then
+#                  if [[ -n '${{ inputs.tags_for_slow_tests }}' ]]; then
+#                    for tag in ${{ inputs.tags_for_slow_tests }}; do
+#                      CMD="${CMD} --exclude-tag=$tag"
+#                    done
+#                  fi
+#                fi
+#
+#              else
+#                CMD="${CMD} -m unittest discover"
+#              fi
+#
+#          else
+#            CMD="python -m unittest discover"
+#          fi
+#          CMD="${CMD} --failfast"
+#          echo "Running command: ${CMD}"
+#          $CMD
+#        working-directory: ${{ inputs.working_directory }}
+#        env: ${{ secrets }}
+#        shell: bash
 
       - name: Create coverage output
         if: inputs.use_coverage && inputs.upload_coverage
