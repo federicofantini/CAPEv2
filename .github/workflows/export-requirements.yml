@@ -37,7 +37,7 @@ jobs:
           installer-parallel: true
 
       - name: Export python-requirements.txt
-        run: poetry export --format requirements.txt --output .github/python-requirements.txt
+        run: poetry export --with dev --format requirements.txt --output .github/python-requirements.txt
 
       - name: Commit changes if any
         run: |
