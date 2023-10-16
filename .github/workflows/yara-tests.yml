@@ -34,7 +34,8 @@ jobs:
           repository: CAPESandbox/CAPE-TestFiles
           path: tests/data/
 
-  run-test:
+  run-yara-tests:
+    needs: setup
     uses: ./.github/workflows/_python.yml
     secrets: inherit
     with:
@@ -47,4 +48,4 @@ jobs:
       python_versions: >-
         [ "3.10"]
       max_timeout: 5
-      ubuntu_version: 20.04
+      ubuntu_version: 22.04

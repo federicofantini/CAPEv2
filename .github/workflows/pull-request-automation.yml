@@ -45,4 +45,4 @@ jobs:
       python_versions: >-
         [ "3.10"]
       max_timeout: 5
-      ubuntu_version: 20.04
+      ubuntu_version: 22.04
