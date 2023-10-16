@@ -19,3 +19,4 @@ libvirt-daemon-system
 libvirt-clients
 bridge-utils
 libvirt-dev
+python3-wheel
