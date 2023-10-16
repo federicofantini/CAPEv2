@@ -7,7 +7,7 @@ libfuzzy-dev
 p7zip-full
 innoextract
 unrar
-upx
+upx-ucl
 libsasl2-dev
 libssl-dev
 libldap2-dev
