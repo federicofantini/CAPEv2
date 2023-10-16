@@ -27,10 +27,10 @@ jobs:
       check_requirements_licenses: false
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
-      custom_command: |
-                      python utils/community.py -waf -cr; \
-                      pytest --import-mode=append; \
-                      pytest tests_parsers -s --import-mode=append; \
+      custom_commands: |
+                      python utils/community.py -waf -cr
+                      pytest --import-mode=append
+                      pytest tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
       env: >-
         {"ENV": "ci"}

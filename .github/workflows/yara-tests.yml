@@ -22,7 +22,7 @@ jobs:
       check_requirements_licenses: false
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
-      custom_command: python -m pytest tests/test_yara.py -s --import-mode=append
+      custom_commands: python -m pytest tests/test_yara.py -s --import-mode=append
       env: >-
         {"ENV": "ci"}
       python_versions: >-

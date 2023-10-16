@@ -64,8 +64,8 @@ on:
         type: string
         required: false
 
-      custom_command:
-        description: String of custom command to run
+      custom_commands:
+        description: String of custom commands to run
         type: string
         required: false
       django_settings_module:
@@ -465,12 +465,16 @@ jobs:
           celery -A ${{ inputs.celery_app }} worker -E -c 1 -n worker -Q ${{ inputs.celery_queues }} --detach
         working-directory: ${{ inputs.working_directory }}
 
-      - name: Run custom command
-        if: inputs.custom_command
+      - name: Run custom commands
+        if: inputs.custom_commands
         run: |
-          COMMAND='${{ inputs.custom_command }}'
-          echo "Running command: $COMMAND"
-          eval $COMMAND
+          COMMANDS='${{ inputs.custom_commands }}'
+          while IFS='\n' read -ra ARR_CMDS; do
+            for CMD in "${ARR_CMDS[@]}"; do
+              echo "Running command: $CMD"
+              eval $CMD
+            done
+          done <<< "$COMMANDS"
         working-directory: ${{ inputs.working_directory }}
         shell: bash
 
