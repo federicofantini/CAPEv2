@@ -1,46 +1,46 @@
-name: Update requirements.txt file
+name: Update python-requirements.txt file
 
 on:
   push:
-    branches: [ master, develop ]
+    branches:
+      - master
+      - develop
     paths:
       - "pyproject.toml"
       - "poetry.lock"
+  workflow_dispatch:
+    branches:
+      - master
+      - develop
+
+# discard previous execution if you commit to a branch that is already running
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  update:
+  setup:
+    uses: ./.github/workflows/_python.yml
+    secrets: inherit
+    with:
+      working_directory: .
+      requirements_path: ./.github/python-requirements.txt
+      packages_path: ./.github/apt-packages.txt
+      custom_command: poetry export --format requirements.txt --output ./.github/python-requirements.txt
+      python-version: "3.10"
+      max_timeout: 5
+      ubuntu_version: 20.04
+
+  commit-changes:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    strategy:
-      matrix:
-        python-version: ["3.10"]
-
+    timeout-minutes: 1
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          installation-arguments: --git https://github.com/python-poetry/poetry.git@fedff6da43f33a350598ec0ea85b5dca30178a03 # 1.5.1
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-
-      - name: Export requirements.txt
-        run: poetry export --format requirements.txt --output requirements.txt
-
+      - uses: actions/checkout@v4
+      - uses: fregante/setup-git-user@v2
       - name: Commit changes if any
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "action@github.com"
           if output=$(git status --porcelain) && [ ! -z "$output" ]; then
             git pull -f
-            git commit -m "ci: Update requirements.txt" -a
+            git commit -m "ci: Update ./.github/python-requirements.txt" -a
             git push
           fi

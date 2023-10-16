@@ -1,13 +1,8 @@
-name: Python package
-
-env:
-  COLUMNS: 120
+name: YARA tests
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  schedule:
+    - cron: '0 8 * * 1'
   workflow_dispatch:
     branches:
       - master
@@ -46,11 +41,7 @@ jobs:
       working_directory: .
       requirements_path: ./.github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
-      custom_command: |
-                      python3 utils/community.py -waf -cr; \
-                      python3 -m pytest --import-mode=append; \
-                      poetry3 run python -m pytest tests_parsers -s --import-mode=append; \
-                      poetry3 run ruff . --line-length 132 --ignore E501,E402
+      custom_command: pytest tests/test_yara.py -s --import-mode=append
       env: >-
         {"ENV": "ci"}
       python-version: "3.10"

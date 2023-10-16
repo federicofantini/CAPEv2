@@ -5,53 +5,23 @@ on:
     - cron: '0 8 * * 1'
   workflow_dispatch:
     branches:
+      - master
       - develop
 
+# discard previous execution if you commit to a branch that is already running
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      matrix:
-        python-version: ["3.10"]
-
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install and cache dependencies
-        uses: Eeems-Org/apt-cache-action@v1.1
-        with:
-          packages: |
-                    libxml2-dev libxslt-dev python3-dev libgeoip-dev ssdeep libfuzzy-dev p7zip-full innoextract unrar \
-                    upx libsasl2-dev libssl-dev libldap2-dev ldap-utils tox lcov valgrind libvirt-daemon-system \
-                    libvirt-clients bridge-utils libvirt-dev
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: latest
-          installation-arguments: --git https://github.com/python-poetry/poetry.git@fedff6da43f33a350598ec0ea85b5dca30178a03 # 1.5.1
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v3
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-
-      - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
-
-      - uses: pypa/gh-action-pip-audit@v1.0.0
-        with:
-          virtual-environment: .venv/
+  setup:
+    uses: ./.github/workflows/_python.yml
+    secrets: inherit
+    with:
+      working_directory: .
+      requirements_path: ./.github/python-requirements.txt
+      packages_path: ./.github/apt-packages.txt
+      custom_command: pip-audit -r ./.github/python-requirements.txt
+      python-version: "3.10"
+      max_timeout: 5
+      ubuntu_version: 20.04

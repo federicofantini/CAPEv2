@@ -2,8 +2,10 @@ name: Upstream pull request
 
 on:
   schedule:
-    - cron: '0 9 1 1-12/2 *' # https://crontab.guru/#0_9_1_1-12/2_*
+    - cron: '0 0 1 * *' # https://crontab.guru/#0_0_1_*_*
   workflow_dispatch:
+    branches:
+      - develop
 
 jobs:
   createPullRequestFromUpstream:
@@ -14,31 +16,21 @@ jobs:
 
       - name: Create upstream master branch
         run: |
-             echo "command: git remote add upstream https://github.com/kevoreilly/CAPEv2.git"
              git remote add upstream https://github.com/kevoreilly/CAPEv2.git
-             echo "command: git remote -v"
              git remote -v
-             echo "command: git fetch origin"
              git fetch origin
-             echo "command: git fetch upstream"
              git fetch upstream
-             
              if [[ $(git ls-remote --heads origin refs/heads/upstream-master) == *upstream-master* ]]; then
                echo "Remote branch 'upstream-master' already exists. Maybe there is already a PR?"
                exit 1
              fi
-             
              echo 'git checkout -b "upstream-master" upstream/master'
              git checkout -b "upstream-master" upstream/master
-             echo "command: git branch --all"
              git branch --all
-             echo "command: rm -rf .github"
              rm -rf .github
-             echo "command: git add .github"
              git add .github
              echo 'git commit -m "Removed upstream CI"'
              git commit -m "Removed upstream CI"
-             echo "command: git push -u origin upstream-master"
              git push -u origin upstream-master
         env:
           GH_TOKEN: ${{ github.token }}
