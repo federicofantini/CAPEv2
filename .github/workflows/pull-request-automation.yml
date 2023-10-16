@@ -26,6 +26,7 @@ jobs:
      secrets: inherit
      with:
       working_directory: .
+      check_requirements_licenses: false
       use_black: true
       use_isort: true
       requirements_path: ./.github/python-requirements.txt

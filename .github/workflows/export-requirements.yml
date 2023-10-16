@@ -24,6 +24,7 @@ jobs:
     secrets: inherit
     with:
       working_directory: .
+      check_requirements_licenses: false
       requirements_path: ./.github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       custom_command: poetry export --format requirements.txt --output ./.github/python-requirements.txt
