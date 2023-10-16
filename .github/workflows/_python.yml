@@ -368,9 +368,9 @@ jobs:
         with:
           requirement_files: |
             ${{ inputs.install_from }}/${{ inputs.requirements_path }}
-            ${{ inputs.install_from }}/requirements-dev.txt
-            ${{ inputs.install_from }}/requirements-linters.txt
-            ${{ inputs.install_from }}/requirements-docs.txt
+#            ${{ inputs.install_from }}/requirements-dev.txt
+#            ${{ inputs.install_from }}/requirements-linters.txt
+#            ${{ inputs.install_from }}/requirements-docs.txt
 
       - name: Check pip cache
         uses: syphar/restore-pip-download-cache@v1
@@ -378,17 +378,17 @@ jobs:
         with:
           requirement_files: |
             ${{ inputs.install_from }}/${{ inputs.requirements_path }}
-            ${{ inputs.install_from }}/requirements-dev.txt
-            ${{ inputs.install_from }}/requirements-linters.txt
-            ${{ inputs.install_from }}/requirements-docs.txt
+#            ${{ inputs.install_from }}/requirements-dev.txt
+#            ${{ inputs.install_from }}/requirements-linters.txt
+#            ${{ inputs.install_from }}/requirements-docs.txt
 
       - name: Install requirements
         if: steps.cache-virtualenv.outputs.cache-hit != 'true'
         run: |
           pip install -r ${{ inputs.requirements_path }}
-          pip install -r requirements-dev.txt
-          pip install -r requirements-linters.txt
-          pip install -r requirements-docs.txt
+#          pip install -r requirements-dev.txt
+#          pip install -r requirements-linters.txt
+#          pip install -r requirements-docs.txt
         shell: bash
         working-directory: ${{ inputs.install_from }}
 
