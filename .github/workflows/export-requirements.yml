@@ -37,12 +37,13 @@ jobs:
           installer-parallel: true
 
       - name: Export python-requirements.txt
-        run: poetry export --format requirements.txt --output python-requirements.txt
+        run: poetry export --format requirements.txt --output .github/python-requirements.txt
 
       - name: Commit changes if any
         run: |
           if output=$(git status --porcelain) && [ ! -z "$output" ]; then
             git pull -f
+            git add .github/python-requirements.txt
             git commit -m "ci: Update python-requirements.txt" -a
             git push
           fi
