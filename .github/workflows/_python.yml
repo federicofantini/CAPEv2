@@ -469,7 +469,7 @@ jobs:
         if: inputs.custom_commands
         run: |
           COMMANDS='${{ inputs.custom_commands }}'
-          while IFS='\n' read -ra ARR_CMDS; do
+          while IFS=$'\n' read -ra ARR_CMDS; do
             for CMD in "${ARR_CMDS[@]}"; do
               echo "Running command: $CMD"
               eval $CMD
