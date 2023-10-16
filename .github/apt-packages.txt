@@ -1,5 +1,5 @@
 libxml2-dev
-libxslt-devel
+libxslt1-dev
 python3-dev
 libgeoip-dev
 ssdeep
