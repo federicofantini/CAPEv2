@@ -29,7 +29,7 @@ jobs:
       check_requirements_licenses: false
       use_black: true
       use_isort: true
-      requirements_path: ./.github/python-requirements.txt
+      requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       django_settings_module: web.settings
       # no docker build for the moment -> 1 build is about 20 minutes!

@@ -46,7 +46,7 @@ jobs:
     with:
       working_directory: .
       check_requirements_licenses: false
-      requirements_path: ./.github/python-requirements.txt
+      requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       custom_command: |
                       python3 utils/community.py -waf -cr; \
