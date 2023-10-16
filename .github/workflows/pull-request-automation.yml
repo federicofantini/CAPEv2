@@ -42,6 +42,7 @@ jobs:
       upload_coverage: true
       tags_for_slow_tests: main
       tags_for_manual_tests: manual
-      python-version: "3.10"
+      python_versions: >-
+        [ "3.10"]
       max_timeout: 5
       ubuntu_version: 20.04

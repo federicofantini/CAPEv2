@@ -22,6 +22,7 @@ jobs:
       requirements_path: ./.github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       custom_command: pip-audit -r ./.github/python-requirements.txt
-      python-version: "3.10"
+      python_versions: >-
+        [ "3.10"]
       max_timeout: 5
       ubuntu_version: 20.04

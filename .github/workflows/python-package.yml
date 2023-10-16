@@ -53,6 +53,7 @@ jobs:
                       poetry3 run ruff . --line-length 132 --ignore E501,E402
       env: >-
         {"ENV": "ci"}
-      python-version: "3.10"
+      python_versions: >-
+        [ "3.10"]
       max_timeout: 5
       ubuntu_version: 20.04
