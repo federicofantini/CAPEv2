@@ -14,26 +14,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    steps:
-      - name: Creating CAPEv2 log folders
-        run: |
-           sudo mkdir -p /var/log/capybox/django /var/log/capybox/web /var/log/capybox/rooter /var/log/capybox/processor \
-           && sudo chmod -R 777 /var/log/capybox/django /var/log/capybox/web /var/log/capybox/rooter /var/log/capybox/processor
-
-      - name: Check out repository code
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
-      - name: Checkout test files repo
-        uses: actions/checkout@v4
-        with:
-          repository: CAPESandbox/CAPE-TestFiles
-          path: tests/data/
-
   run-yara-tests:
     needs: setup
     uses: ./.github/workflows/_python.yml
