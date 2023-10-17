@@ -20,3 +20,4 @@ libvirt-clients
 bridge-utils
 libvirt-dev
 python3-wheel
+libre2-dev
