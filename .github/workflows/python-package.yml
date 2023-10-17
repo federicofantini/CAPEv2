@@ -32,8 +32,8 @@ jobs:
       packages_path: ./.github/apt-packages.txt
       custom_commands: |
                       python utils/community.py -waf -cr
-                      pytest --import-mode=append
-                      pytest tests_parsers -s --import-mode=append
+                      pytest -c ./.github/pytest.ini --import-mode=append
+                      pytest -c ./.github/pytest.ini tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
       env: >-
         {"ENV": "ci"}
