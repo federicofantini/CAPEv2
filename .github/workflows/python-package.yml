@@ -31,8 +31,10 @@ jobs:
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       custom_commands: |
-                      python utils/community.py -waf -cr
-                      python web/manage.py shell <<< "from django.conf import settings; settings.configure()"
+#                      python utils/community.py -waf -cr
+                      export ENV="ci"
+                      export DJANGO_SETTINGS_MODULE="web.settings"
+#                      python web/manage.py shell <<< "from django.conf import settings; settings.configure()"
                       python web/manage.py shell <<< "import os; print(os.environ.get('DJANGO_SETTINGS_MODULE'))"
                       pytest --import-mode=append
                       pytest tests_parsers -s --import-mode=append
