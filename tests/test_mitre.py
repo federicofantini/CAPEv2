@@ -3,7 +3,6 @@
 # See the file 'docs/LICENSE' for copying permission.
 
 from lib.cuckoo.common.integrations.mitre import mitre_generate_attck, mitre_load
-from utils.community import install
 
 
 def test_mitre_attck():
