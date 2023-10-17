@@ -30,12 +30,9 @@ jobs:
       check_requirements_licenses: false
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
-      #                      python utils/community.py -waf -cr
-      #                      python web/manage.py shell <<< "from django.conf import settings; settings.configure()"
       custom_commands: |
-                      export ENV="ci"
-                      export DJANGO_SETTINGS_MODULE="web.settings"
-                      python web/manage.py shell <<< "import os; print(os.environ.get('DJANGO_SETTINGS_MODULE'))"
+                      python utils/community.py -waf -cr
+                      python web/manage.py shell <<< "from django.conf import settings; settings.configure()"
                       pytest --import-mode=append
                       pytest tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
