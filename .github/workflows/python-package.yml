@@ -32,6 +32,7 @@ jobs:
       packages_path: ./.github/apt-packages.txt
       custom_commands: |
                       python utils/community.py -waf -cr
+                      which unrar
                       pytest -c web/pytest.ini --ds="web.settings" --import-mode=append
                       pytest -c web/pytest.ini --ds="web.settings" tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
