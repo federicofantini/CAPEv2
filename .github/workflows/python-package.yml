@@ -33,6 +33,7 @@ jobs:
       # malwareconfig had a broken dep with pycrypto==2.6.1 -> installing it only for the tests!
       # /usr/bin/unrar binary path is broken with cached package -> installing again every time
       custom_commands: |
+                      pwd
                       python utils/community.py -waf -cr --mitre-offline
                       pip install --no-deps malwareconfig
                       pip install pyattck
