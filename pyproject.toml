@@ -106,6 +106,7 @@ pyattck = "6.0.0"
 batch-deobfuscator = {url = "https://github.com/DissectMalware/batch_deobfuscator/archive/f08059955fd69864c1dc9648935f807d4403b1f2.zip"}
 httpreplay = {url = "https://github.com/CAPESandbox/httpreplay/archive/60d4f47b52811788894904d3d919f57dcbe6b80d.zip"}
 pyre2 = {url = "https://github.com/andreasvc/pyre2/archive/76cdec765244a8ff24f2e3088af1d3b0b6faba22.zip"}
+enum34 = "^1.1.10"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
