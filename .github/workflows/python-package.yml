@@ -32,10 +32,9 @@ jobs:
       packages_path: ./.github/apt-packages.txt
       # malwareconfig had a broken dep with pycrypto==2.6.1 -> installing it only for the tests!
       custom_commands: |
-                      python utils/community.py -waf -cr
+                      python utils/community.py -waf -cr --mitre-offline
                       pip install --no-deps malwareconfig
-                      which unrar
-                      ls -al /usr/bin/unrar
+                      sudo apt install unrar
                       pytest -c web/pytest.ini --ds="web.settings" --import-mode=append
                       pytest -c web/pytest.ini --ds="web.settings" tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
@@ -43,5 +42,5 @@ jobs:
         {"ENV": "ci", "DJANGO_SETTINGS_MODULE": "web.settings"}
       python_versions: >-
         ["3.10"]
-      max_timeout: 8
+      max_timeout: 10
       ubuntu_version: 22.04
