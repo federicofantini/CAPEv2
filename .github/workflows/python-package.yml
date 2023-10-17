@@ -32,7 +32,7 @@ jobs:
       packages_path: ./.github/apt-packages.txt
       custom_commands: |
                       python utils/community.py -waf -cr
-                      python web/manage.py run "from django.conf import settings; settings.configure()"
+                      python web/manage.py shell <<< "from django.conf import settings; settings.configure()"
                       pytest --import-mode=append
                       pytest tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
