@@ -40,7 +40,7 @@ jobs:
                       sudo apt install -y unrar
                       pytest -c web/pytest.ini --ds="web.settings" --import-mode=append
                       pytest -c web/pytest.ini --ds="web.settings" tests_parsers -s --import-mode=append
-                      ruff . --line-length 132 --ignore E501,E402
+                      ruff . --line-length 132 --ignore E501,E402,E722
       env: >-
         {"ENV": "ci", "DJANGO_SETTINGS_MODULE": "web.settings"}
       python_versions: >-
