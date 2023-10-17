@@ -392,14 +392,13 @@ description = "Transforms Batchfile Nightmares Into Blue Team Dream Warriors"
 category = "main"
 optional = false
 python-versions = "*"
-files = []
-develop = false
+files = [
+    {file = "f08059955fd69864c1dc9648935f807d4403b1f2.zip", hash = "sha256:50b505ade893ef58399737e307288812ad579f301adb89bdd5a3b6a868b5c828"},
+]
 
 [package.source]
-type = "git"
-url = "https://github.com/DissectMalware/batch_deobfuscator"
-reference = "HEAD"
-resolved_reference = "f08059955fd69864c1dc9648935f807d4403b1f2"
+type = "url"
+url = "https://github.com/DissectMalware/batch_deobfuscator/archive/f08059955fd69864c1dc9648935f807d4403b1f2.zip"
 
 [[package]]
 name = "beautifulsoup4"
@@ -2375,8 +2374,9 @@ description = ""
 category = "main"
 optional = false
 python-versions = "*"
-files = []
-develop = false
+files = [
+    {file = "60d4f47b52811788894904d3d919f57dcbe6b80d.zip", hash = "sha256:959f0cca0496824e6b2102d47013ea6da42913b3e3a87dc6e9eba19d532fa570"},
+]
 
 [package.dependencies]
 brotli = "1.0.7"
@@ -2390,10 +2390,8 @@ dev = ["mock (==2.0.0)", "pytest (>=4.4.1)"]
 mitmproxy = ["mitmproxy (==4.0.4)"]
 
 [package.source]
-type = "git"
-url = "https://github.com/CAPESandbox/httpreplay"
-reference = "HEAD"
-resolved_reference = "60d4f47b52811788894904d3d919f57dcbe6b80d"
+type = "url"
+url = "https://github.com/CAPESandbox/httpreplay/archive/60d4f47b52811788894904d3d919f57dcbe6b80d.zip"
 
 [[package]]
 name = "httpretty"
@@ -4777,22 +4775,21 @@ files = [
 [[package]]
 name = "pyre2"
 version = "0.3.6"
-description = "Python wrapper for Google\\'s RE2 using Cython"
+description = ""
 category = "main"
 optional = false
 python-versions = ">=3.6"
-files = []
-develop = false
+files = [
+    {file = "76cdec765244a8ff24f2e3088af1d3b0b6faba22.zip", hash = "sha256:fa930f4b3fbcba8ba69e1f998af2b45223a8d6ad34a99a21220614148318e5bc"},
+]
 
 [package.extras]
 perf = ["regex"]
 test = ["pytest"]
 
 [package.source]
-type = "git"
-url = "https://github.com/andreasvc/pyre2.git"
-reference = "HEAD"
-resolved_reference = "76cdec765244a8ff24f2e3088af1d3b0b6faba22"
+type = "url"
+url = "https://github.com/andreasvc/pyre2/archive/76cdec765244a8ff24f2e3088af1d3b0b6faba22.zip"
 
 [[package]]
 name = "pyrsistent"
@@ -6862,4 +6859,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "f82d357d1234c0d26fab3086955d8fc7d3113174b0f7d7d2f0c6423fb49a5aa7"
+content-hash = "d2e597fa668839dd8327cd634debcf521e1ba5b246765dd8f70e82518fe78132"
