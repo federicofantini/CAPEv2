@@ -35,6 +35,7 @@ jobs:
       custom_commands: |
                       python utils/community.py -waf -cr --mitre-offline
                       pip install --no-deps malwareconfig
+                      pip install pyattck
                       sudo apt install -y unrar
                       pytest -c web/pytest.ini --ds="web.settings" --import-mode=append
                       pytest -c web/pytest.ini --ds="web.settings" tests_parsers -s --import-mode=append
