@@ -36,8 +36,8 @@ jobs:
                       pytest -c pytest.ini tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
       env: >-
-        {"ENV": "ci"}
+        {"ENV": "ci", "DJANGO_SETTINGS_MODULE": "web.settings"}
       python_versions: >-
-        [ "3.10"]
+        ["3.10"]
       max_timeout: 8
       ubuntu_version: 22.04
