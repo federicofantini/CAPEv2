@@ -30,9 +30,12 @@ jobs:
       check_requirements_licenses: false
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
+      # malwareconfig had a broken dep with pycrypto==2.6.1 -> installing it only for the tests!
       custom_commands: |
                       python utils/community.py -waf -cr
                       pip install --no-deps malwareconfig
+                      which unrar
+                      ls -al /usr/bin/unrar
                       pytest -c web/pytest.ini --ds="web.settings" --import-mode=append
                       pytest -c web/pytest.ini --ds="web.settings" tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
