@@ -98,6 +98,9 @@ python-ldap = "^3.4.3"
 pip-audit = "2.6.1"
 ruff = "^0.0.292"
 wheel = "^0.41.2"
+malwareconfig = "^1.0.4"
+malduck = "^4.3.2"
+mwcp = "^3.13.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
