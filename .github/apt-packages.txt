@@ -6,7 +6,7 @@ ssdeep
 libfuzzy-dev
 p7zip-full
 innoextract
-unrar-free
+unrar
 upx-ucl
 libsasl2-dev
 libssl-dev
