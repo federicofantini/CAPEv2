@@ -31,10 +31,11 @@ jobs:
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       # malwareconfig had a broken dep with pycrypto==2.6.1 -> installing it only for the tests!
+      # /usr/bin/unrar binary path is broken -> updated with update-alternatives
       custom_commands: |
                       python utils/community.py -waf -cr --mitre-offline
                       pip install --no-deps malwareconfig
-                      sudo apt install unrar
+                      sudo update-alternatives --config unrar
                       pytest -c web/pytest.ini --ds="web.settings" --import-mode=append
                       pytest -c web/pytest.ini --ds="web.settings" tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
