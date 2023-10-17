@@ -32,8 +32,8 @@ jobs:
       packages_path: ./.github/apt-packages.txt
       custom_commands: |
                       python utils/community.py -waf -cr
-                      pytest -c pytest.ini --import-mode=append
-                      pytest -c pytest.ini tests_parsers -s --import-mode=append
+                      pytest -c pytest.ini --ds="web.settings" --import-mode=append
+                      pytest -c pytest.ini --ds="web.settings" tests_parsers -s --import-mode=append
                       ruff . --line-length 132 --ignore E501,E402
       env: >-
         {"ENV": "ci", "DJANGO_SETTINGS_MODULE": "web.settings"}
