@@ -23,6 +23,8 @@ jobs:
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       custom_commands: |
+                       ls -al
+                       pwd
                        source ./venv/bin/activate 
                        pip-audit -v --local
       python_versions: >-
