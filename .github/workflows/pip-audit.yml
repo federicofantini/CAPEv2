@@ -23,8 +23,7 @@ jobs:
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       custom_commands: |
-                       cd /home/runner/.virtualenvs/.venv
-                       source ./bin/activate
+                       source /home/runner/.virtualenvs/.venv/bin/activate
                        pip-audit --local
       python_versions: >-
         ["3.10"]
