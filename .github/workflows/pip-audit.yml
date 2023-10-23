@@ -23,7 +23,7 @@ jobs:
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
       custom_commands: |
-                       ls -al /home/ /home/runner /home/runner/.venv
+                       find /home/runner -iname ".venv" 2>/dev/null
       python_versions: >-
         ["3.10"]
       max_timeout: 10
