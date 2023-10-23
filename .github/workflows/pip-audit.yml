@@ -22,7 +22,8 @@ jobs:
       check_requirements_licenses: false
       requirements_path: .github/python-requirements.txt
       packages_path: ./.github/apt-packages.txt
-      custom_commands: pip-audit -v --cache-dir /home/runner/.virtualenvs/.venv -r ./.github/python-requirements.txt
+      custom_commands: source ./venv/bin/activate 
+                       pip-audit -v --local
       python_versions: >-
         ["3.10"]
       max_timeout: 10
