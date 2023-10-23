@@ -24,6 +24,6 @@ jobs:
       packages_path: ./.github/apt-packages.txt
       custom_commands: pip-audit -r ./.github/python-requirements.txt
       python_versions: >-
-        [ "3.10"]
-      max_timeout: 7
+        ["3.10"]
+      max_timeout: 10
       ubuntu_version: 22.04
