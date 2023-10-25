@@ -16,16 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  detect-changes:
-    uses: ./.github/workflows/_detect_changes.yml
-    with:
-      backend_directories: .github
-      frontend_directories: .github
-      ubuntu_version: latest
-
   run-all-tests:
-    needs: detect-changes
-    if: ${{ needs.detect-changes.outputs.backend > 0 }}
     uses: ./.github/workflows/_python.yml
     secrets: inherit
     with:
